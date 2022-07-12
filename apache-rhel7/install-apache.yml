@@ -1,0 +1,15 @@
+---
+- name: Install Apache locally
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install httpd 2.4.6
+      ansible.builtin.dnf:
+        name: httpd-2.4.6
+        state: present
+
+    - name: Start httpd service unit
+      ansible.builtin.systemd:
+        name: httpd
+        state: started
