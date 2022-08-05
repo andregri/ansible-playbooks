@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: deploy sudoers template
+      template:
+        src: templates/hardened.j2
+        dest: /etc/sudoers.d/hardened
+        validate: /sbin/visudo -cf %s
